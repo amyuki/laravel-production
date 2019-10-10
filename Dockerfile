@@ -60,6 +60,9 @@ RUN set -ex; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 # set recommended opcache PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
