@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.3-fpm
 
 RUN apt-get update; \
     apt-get install -y \
@@ -86,7 +86,5 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends nodejs
 
 WORKDIR /var/www/html
-CMD bash -c "composer install && npm install && php ./artisan serve --port=80 --host=0.0.0.0"
-EXPOSE 80
-HEALTHCHECK --interval=1m CMD curl -f http://localhost/ || exit 1
+
 ENV TERM xterm
